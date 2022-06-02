@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const cp = require("child_process");
 // const cla = require("command-line-args");
 
 function isIntValue(value, length) {
@@ -116,7 +117,7 @@ fs.readdirSync(".").forEach((filename) => {
 
     if (fs.statSync(filename).isDirectory()) {
         if (isIntValue(filename, 4)) {
-            const rsyncCmod = `rsync -av ${filename}/ ${outputdir}/${filename}`;
+            const rsyncCmd = `rsync -av ${filename}/ ${outputdir}/${filename}`;
             cp.execSync(rsyncCmd);
         } else {
             console.log(
